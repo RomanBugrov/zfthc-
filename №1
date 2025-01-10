@@ -1,0 +1,31 @@
+#включить <iostream>
+#включить <вектор>
+ 
+bool isValidTriangle(int a, int b) {
+    return a > 0 && b > 0; // Проверка на натуральные числа
+}
+ 
+void drawIsoscelesTriangle(int height) {
+ int width = 2 * height - 1; // Ширина основания
+    
+    ( для int i = 0; i < высота; ++i) {
+ int stars = 2 * i + 1; // Количество звезд на текущем уровне
+ int spaces = (ширина - количество звёзд) / 2; // Количество пробелов
+ std::cout << std::string(пробелы, ' ') << std::string(звездочки, '*') << std::endl;
+    }
+}
+ 
+int main() {
+ int a, b;
+ std::cin >> a >> b;
+ 
+    ! (еслиisValidTriangle(a, b) || a <= 0 || b <= 0) {
+ std::cout << "НЕТ" << std::endl;
+        0 возврат;
+    }
+ 
+ int height = a; // Можно использовать любую из сторон для высоты
+ Нарисуйте равнобедренный угол(высота);
+    
+    0 возврат;
+}
