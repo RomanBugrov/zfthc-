@@ -1,0 +1,56 @@
+#include <iostream>
+#include <vector>
+#include <iomanip>
+
+void longDivision(int dividend, int divisor) {
+    // Проверяем деление на ноль
+    if (divisor == 0) {
+        std::cout << "Ошибка\n";
+        return;
+    }
+
+    int current = 0; // Текущий делимый
+    std::string result;
+
+    // Превращаем делимое в положительное число для работы с цифрами
+    int absDividend = abs(dividend);
+    int absDivisor = abs(divisor);
+
+    // Получаем строку для финального вывода
+    while (absDividend > 0) {
+        current = current * 10 + (absDividend % 10);
+        absDividend /= 10;
+
+        if (current >= absDivisor) {
+            int quotient = current / absDivisor;
+            result += std::to_string(quotient) + " : " + std::to_string(absDivisor) +
+                      " - " + std::to_string(quotient * absDivisor) + " = " +
+                      std::to_string(current - (quotient * absDivisor)) + "\n";
+            current = current % absDivisor;
+        } else if (!result.empty()) {
+            result += std::to_string(0) + " : " + std::to_string(absDivisor) +
+                      " - " + std::to_string(0) + " = " + std::to_string(current) + "\n";
+        }
+    }
+
+    // Вывод результата
+    if (result.empty()) {
+        std::cout << "0\n";
+    } else {
+        std::cout << result;
+        std::cout << " " << (dividend / divisor) << "\n"; // Итоговое целое число
+    }
+}
+
+int main() {
+    int dividend, divisor;
+
+    std::cout << "Введите делимое: ";
+    std::cin >> dividend;
+    std::cout << "Введите делитель: ";
+    std::cin >> divisor;
+
+    longDivision(dividend, divisor);
+
+    return 0;
+}
