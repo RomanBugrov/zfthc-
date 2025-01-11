@@ -1,0 +1,62 @@
+#include <iostream>
+#include <vector>
+
+int main() {
+    int count100, count10, count5, count1;
+    int price, received;
+
+    std::cout << "Введите количество банкнот 100: ";
+    std::cin >> count100;
+    std::cout << "Введите количество банкнот 10: ";
+    std::cin >> count10;
+    std::cout << "Введите количество банкнот 5: ";
+    std::cin >> count5;
+    std::cout << "Введите количество банкнот 1: ";
+    std::cin >> count1;
+    std::cout << "Введите стоимость товара: ";
+    std::cin >> price;
+    std::cout << "Введите сумму, которую нам дали: ";
+    std::cin >> received;
+
+    int change = received - price;
+
+    if (change < 0) {
+        std::cout << "NO\n";
+        return 0;
+    }
+
+    std::vector<int> banknotes(4, 0); // Укажем количество выданных банкнот 
+
+    // Максимально возможные купюры
+    while (change > 0) {
+        if (change >= 100 && count100 > 0) {
+            change -= 100;
+            banknotes[0]++;
+            count100--;
+        } 
+        else if (change >= 10 && count10 > 0) {
+            change -= 10;
+            banknotes[1]++;
+            count10--;
+        } 
+        else if (change >= 5 && count5 > 0) {
+            change -= 5;
+            banknotes[2]++;
+            count5--;
+        } 
+        else if (change >= 1 && count1 > 0) {
+            change -= 1;
+            banknotes[3]++;
+            count1--;
+        } 
+        else {
+            std::cout << "NO\n";
+            return 0;
+        }
+    }
+
+    std::cout << "YES\n";
+    std::cout << banknotes[0] << " " << banknotes[1] << " " << banknotes[2] << " " << banknotes[3] << "\n";
+
+    return 0;
+}
