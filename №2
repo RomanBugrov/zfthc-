@@ -1,0 +1,25 @@
+#включить <iostream>
+#включить <карта>
+ 
+int main() {
+ длинный длинный x;
+ std::cin >> x;
+ 
+    ( если x < 0) {
+ std::cout << "Введено отрицательное число" << std::endl;
+        0 возврат;
+    }
+ 
+ std::map<char, int> digitCount; // Используем map для подсчета количества цифр
+ 
+ std::string numberStr = std::to_string(x);
+    ( длясимвола digit : numberStr) {
+ Количество цифр[цифра]++;
+    }
+ 
+    ( для каждой константной переменной & entry : digitCount) {
+ std::cout << "Количество " << entry.first << " - " << entry.second << std::endl;
+    }
+ 
+    0 возврат;
+}
