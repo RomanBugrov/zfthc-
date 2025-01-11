@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+std::vector<std::string> notes = {"A", "B", "C", "D", "E", "F", "G"};
+
+std::string getChord(const std::string& root, char chordType) {
+    // Находим индекс корневой ноты
+    int rootIndex = -1;
+    for (int i = 0; i < notes.size(); ++i) {
+        if (notes[i] == root) {
+            rootIndex = i;
+            break;
+        }
+    }
+
+    if (rootIndex == -1) {
+        return "Ошибка: Неверная нота.";
+    }
+
+    std::string chord;
+    int secondNoteIndex;
+    int thirdNoteIndex;
+
+    // Определяем индексы второй и третьей нот в зависимости от типа аккорда
+    if (chordType == 'M') {
+        secondNoteIndex = (rootIndex + 2) % notes.size();    // 2 тона от корня
+        thirdNoteIndex = (secondNoteIndex + 2) % notes.size(); // 1.5 тона от второй
+    } else if (chordType == 'm') {
+        secondNoteIndex = (rootIndex + 1) % notes.size();    // 1.5 тона от корня
+        thirdNoteIndex = (secondNoteIndex + 2) % notes.size(); // 2 тона от второй
+    } else {
+        return "Ошибка: Неверный тип аккорда.";
+    }
+
+    // Корректируем для повышения или понижения нот
+    chord += notes[rootIndex] + " "; // первая нота
+    if (chordType == 'M' && notes[secondNoteIndex] == "C") {
+        chord += "C# "; // повышаем C
+    } else if (chordType == 'M' && notes[secondNoteIndex] == "F") {
+        chord += "F# "; // повышаем F
+    } else if (chordType == 'm' && notes[secondNoteIndex] == "B") {
+        chord += "Bb "; // понижаем B
+    } else {
+        chord += notes[secondNoteIndex] + " "; // вторая нота
+    }
+
+    chord += notes[thirdNoteIndex]; // добавляем третью ноту
+
+    return chord;
+}
+
+int main() {
+    std::string rootNote;
+    char chordType;
+
+    std::cout << "Введите корневую ноту (A, B, C, D, E, F, G): ";
+    std::cin >> rootNote;
+    std::cout << "Введите тип аккорда (M для мажорного, m для минорного): ";
+    std::cin >> chordType;
+
+    std::string chord = getChord(rootNote, chordType);
+    std::cout << "Аккорд: " << chord << std::endl;
+
+    return 0;
+}
