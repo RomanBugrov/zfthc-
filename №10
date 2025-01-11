@@ -1,0 +1,20 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+
+int main() {
+    double number;
+    std::cout << "Введите вещественное число: ";
+    std::cin >> number;
+
+    // Находим порядок числа
+    int d = static_cast<int>(std::floor(std::log10(std::abs(number))));
+    
+    // Приводим число к формату a.bc
+    double mantissa = number / std::pow(10, d);
+
+    // Вывод результата
+    std::cout << std::fixed << std::setprecision(2) << mantissa << " * 10^" << d << std::endl;
+
+    return 0;
+}
