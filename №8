@@ -1,0 +1,35 @@
+#include <iostream>
+#include <iomanip>
+
+int main() {
+    double a, b, c, d, e, f;
+
+    std::cout << "Введите коэффициенты a, b, c для первой прямой (ay + bx = c): ";
+    std::cin >> a >> b >> c;
+    std::cout << "Введите коэффициенты d, e, f для второй прямой (dy + ex = f): ";
+    std::cin >> d >> e >> f;
+
+    // Вычисление определителя системы
+    double det = a * e - b * d;
+
+    if (det == 0) {
+        // Прямые параллельны или совпадают
+        double k1 = a / b; // наклон первой прямой
+        double k2 = d / e; // наклон второй прямой
+        
+        if (k1 == k2 && (a * f == c * d || b * f == e * c)) {
+            std::cout << "Прямые совпадают." << std::endl;
+        } else {
+            std::cout << "Прямые параллельны." << std::endl;
+        }
+    } else {
+        // Прямые пересекаются
+        double x = (c * d - a * f) / det;
+        double y = (c * e - b * f) / det;
+
+        std::cout << "Точка пересечения: (" << std::fixed << std::setprecision(2) 
+                  << x << ", " << y << ")" << std::endl;
+    }
+
+    return 0;
+}
