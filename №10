@@ -1,0 +1,32 @@
+#include <iostream>
+
+bool isValidRemainder(int remainder, int modulus) {
+    return remainder >= 0 && remainder < modulus;
+}
+
+int main() {
+    int k, m, n;
+    
+    std::cout << "Введите остаток от деления на 3 (k): ";
+    std::cin >> k;
+    std::cout << "Введите остаток от деления на 5 (m): ";
+    std::cin >> m;
+    std::cout << "Введите остаток от деления на 7 (n): ";
+    std::cin >> n;
+
+    // Проверка корректности условий остатков
+    if (!isValidRemainder(k, 3) || !isValidRemainder(m, 5) || !isValidRemainder(n, 7)) {
+        std::cout << "Некорректные условия\n";
+        return 0;
+    }
+
+    // Поиск минимального x
+    for (int x = 0; ; ++x) {
+        if (x % 3 == k && x % 5 == m && x % 7 == n) {
+            std::cout << "Минимальное x: " << x << std::endl;
+            break;
+        }
+    }
+
+    return 0;
+}
