@@ -1,0 +1,36 @@
+#include <iostream>
+#include <cmath>
+
+int main() {
+    long long n;
+    std::cout << "Введите целое число n: ";
+    std::cin >> n;
+
+    // Приводим число к положительному, так как знаки не важны
+    n = std::abs(n);
+
+    int maxCount = 1; // Максимальное количество подряд стоящих одинаковых цифр
+    int currentCount = 1; // Текущее количество подряд стоящих одинаковых цифр
+    char previousDigit = '\0'; // Предыдущая цифра
+
+    // Перебираем каждую цифру числа
+    while (n > 0) {
+        char currentDigit = n % 10 + '0'; // Получаем последнюю цифру
+        n /= 10;
+
+        if (currentDigit == previousDigit) {
+            currentCount++;
+        } else {
+            maxCount = std::max(maxCount, currentCount);
+            currentCount = 1; // Сбрасываем текущий счетчик
+        }
+        previousDigit = currentDigit; // Обновляем предыдущую цифру
+    }
+
+    // Проверяем в последний раз
+    maxCount = std::max(maxCount, currentCount);
+
+    std::cout << "Наибольшее количество подряд стоящих одинаковых цифр: " << maxCount << std::endl;
+
+    return 0;
+}
