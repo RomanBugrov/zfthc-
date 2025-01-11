@@ -1,0 +1,29 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main()
+    {
+    int N, M;
+    cin >> N >> M;
+    // Проверка, что M больше 1, так как степени 0 и 1 не имеют смысла в этом контексте
+    if (M <= 1) 
+    {
+        cout << 0 << endl;
+        return 0;
+   
+    // Проверка, является ли N точной степенью M
+    int power = 1;
+    while (pow(M, power) < N) 
+    {
+        power++;
+   
+    if (pow(M, power) == N) 
+    {
+        cout << 1 << endl; // N является точной степенью M
+    }
+    else 
+    {
+        cout << 0 << endl; // N не является точной степенью M
+   
+    return 0;
+    }
